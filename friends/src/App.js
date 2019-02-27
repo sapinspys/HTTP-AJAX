@@ -5,7 +5,7 @@ import FriendList from './components/FriendList';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div>
         <FriendList />
       </div>
     );

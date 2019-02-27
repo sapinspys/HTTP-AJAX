@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
+
 import axios from 'axios';
+import styled from 'styled-components';
 
 import FriendForm from './FriendForm';
+
+const WrapperContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+`;
+
+const ListContainer = styled.div`
+    width: 100%;
+`;
+
+
+
 
 export default class FriendList extends Component {
     constructor(props) {
@@ -42,14 +56,16 @@ export default class FriendList extends Component {
 
     render() {
         return(
-            <div>
+            <WrapperContainer>
                 <FriendForm friends={this.state.friends} />
-                {this.state.friends.map(friend => (
-                    <FriendDetails key={friend.id} 
-                        friend={friend}
-                        handleDelete={(name) => this.deleteFriend(name)} />
-                ))}
-            </div>
+                <ListContainer>
+                    {this.state.friends.map(friend => (
+                        <FriendDetails key={friend.id} 
+                            friend={friend}
+                            handleDelete={(name) => this.deleteFriend(name)} />
+                    ))}
+                </ListContainer>
+            </WrapperContainer>
         )
     }
 }

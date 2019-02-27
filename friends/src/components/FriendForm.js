@@ -3,6 +3,13 @@ import { Button, Form, Label, Input } from 'reactstrap';
 
 import axios from 'axios';
 
+const formStyles = {
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  margin: '0 auto'
+}
+
 export default class FriendForm extends Component {
     constructor(props) {
         super(props);
@@ -40,7 +47,7 @@ export default class FriendForm extends Component {
   
     render() {
       return (
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit} style={formStyles}>
           <Label>
             Name:
             <Input type="text" 
@@ -62,7 +69,7 @@ export default class FriendForm extends Component {
               onChange={this.handleChange} 
               name='email' />
           </Label>
-          <Button type="submit" value="Submit" />
+          <Button color='primary' block>Submit</Button>
         </Form>
       );
     }
