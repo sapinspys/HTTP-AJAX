@@ -16,7 +16,12 @@ export default class FriendForm extends Component {
   
     handleSubmit = e => {
       e.preventDefault();
-      console.log(`You have submitted ${this.state}`)
+      console.log(`You have submitted ${JSON.stringify(this.state)}`)
+      this.setState({
+        name: '',
+        age: '',
+        email: ''
+      })
     }
   
     render() {
