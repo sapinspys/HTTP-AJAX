@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import FriendList from './components/FriendList';
 
 const PageContainer = styled.div`
-  padding: 20px;
-  border: 1px solid black;
+  padding: 50px;
+  background: #E8E8E8;
 `;
 
 class App extends Component {

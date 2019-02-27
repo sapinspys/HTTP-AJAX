@@ -9,12 +9,10 @@ import FriendForm from './FriendForm';
 const WrapperContainer = styled.div`
     display: flex;
     flex-direction: row;
-    border: 1px solid blue;
 `;
 
 const ListContainer = styled.div`
     width: 50%;
-    border: 1px solid green;
     margin-left: auto;
 `;
 
@@ -74,9 +72,11 @@ export default class FriendList extends Component {
 function FriendDetails({ friend, handleDelete }) {
     const { name, age, email } = friend;
     return(
-        <Card inverse color='success'>
-            <CardTitle style={{fontSize:'1.4rem', 
-                borderBottom: '1px solid white'}}>
+        <Card inverse color='success' style={{marginBottom: '20px', padding: '15px'}}>
+            <CardTitle style={{
+                fontSize:'1.4rem', 
+                borderBottom: '1px solid white'
+                }}>
                     <strong>{name}</strong>
             </CardTitle>
             <CardText>
@@ -85,7 +85,7 @@ function FriendDetails({ friend, handleDelete }) {
             <CardText>
                 <strong>Email</strong>: {email}
             </CardText>
-            <Button onClick={() => handleDelete(name)} size='sm' color='danger'>Delete Friend</Button>
+            <Button onClick={() => handleDelete(name)} size='sm' color='warning' justified>Delete Friend</Button>
         </Card>
     );
   };

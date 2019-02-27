@@ -4,10 +4,17 @@ import { Button, Form, Label, Input } from 'reactstrap';
 import axios from 'axios';
 
 const formStyles = {
-  width: '45%',
+  width: '40%',
   display: 'flex',
   flexDirection: 'column',
-  position: 'fixed'
+  justifyContent: 'space-between',
+  position: 'fixed',
+  margin: '0 auto',
+  height: '400px',
+  background: 'whitesmoke',
+  padding: '20px',
+  borderRadius: '5px',
+  boxShadow: '0 0 2px black'
 }
 
 export default class FriendForm extends Component {
@@ -48,6 +55,7 @@ export default class FriendForm extends Component {
     render() {
       return (
         <Form onSubmit={this.handleSubmit} style={formStyles}>
+          <Label style={{color:'gray', fontSize: '1.4rem'}}>Add or Edit Friends</Label>
           <Label>
             Name:
             <Input type="text" 
