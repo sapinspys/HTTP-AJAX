@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import axios from 'axios';
 import styled from 'styled-components';
+import { Card, CardTitle, CardText, Button } from 'reactstrap';
 
 import FriendForm from './FriendForm';
 
@@ -73,16 +74,19 @@ export default class FriendList extends Component {
 function FriendDetails({ friend, handleDelete }) {
     const { name, age, email } = friend;
     return(
-        <div>
-            <h2>{name}</h2>
-            <button onClick={() => handleDelete(name)}>X</button>
-            <div>
+        <Card inverse color='success'>
+            <CardTitle style={{fontSize:'1.4rem', 
+                borderBottom: '1px solid white'}}>
+                    <strong>{name}</strong>
+            </CardTitle>
+            <CardText>
                 <strong>Age</strong>: {age}
-            </div>
-            <div>
+            </CardText>
+            <CardText>
                 <strong>Email</strong>: {email}
-            </div>
-        </div>
+            </CardText>
+            <Button onClick={() => handleDelete(name)} size='sm' color='danger'>Delete Friend</Button>
+        </Card>
     );
   };
 
