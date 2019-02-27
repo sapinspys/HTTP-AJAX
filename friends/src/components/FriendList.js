@@ -1,4 +1,4 @@
-import React, { Component } from 'react-router-dom';
+import React, { Component } from 'react';
 import axios from 'axios';
 
 export default class FriendList extends Component {
@@ -30,4 +30,19 @@ export default class FriendList extends Component {
         )
     }
 }
+
+function FriendDetails({ friend }) {
+    const { name, age, email } = friend;
+    return(
+        <div>
+            <h2>{name}</h2>
+            <div>
+                Age: <em>{age}</em>
+            </div>
+            <div>
+                Email: <strong>{email}</strong>
+            </div>
+        </div>
+    );
+  };
 
