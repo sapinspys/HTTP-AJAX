@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Button, Form, Label, Input } from 'reactstrap';
+
 import axios from 'axios';
 
 export default class FriendForm extends Component {
@@ -38,30 +40,30 @@ export default class FriendForm extends Component {
   
     render() {
       return (
-        <form onSubmit={this.handleSubmit}>
-          <label>
+        <Form onSubmit={this.handleSubmit}>
+          <Label>
             Name:
-            <input type="text" 
+            <Input type="text" 
               value={this.state.name} 
               onChange={this.handleChange} 
               name='name' />
-          </label>
-          <label>
+          </Label>
+          <Label>
             Age:
-            <input type="text" 
+            <Input type="text" 
               value={this.state.age} 
               onChange={this.handleChange} 
               name='age' />
-          </label>
-          <label>
+          </Label>
+          <Label>
             Email:
-            <input type="text" 
+            <Input type="text" 
               value={this.state.email} 
               onChange={this.handleChange} 
               name='email' />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+          </Label>
+          <Button type="submit" value="Submit" />
+        </Form>
       );
     }
   }
