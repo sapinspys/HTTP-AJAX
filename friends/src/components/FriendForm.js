@@ -10,12 +10,12 @@ export default class FriendForm extends Component {
         };
     }
   
-    handleChange = event => {
-      this.setState({[value]: event.target.value});
+    handleChange = e => {
+      this.setState({[e.target.name]: e.target.value});
     }
   
-    handleSubmit = event => {
-      event.preventDefault();
+    handleSubmit = e => {
+      e.preventDefault();
       console.log(`You have submitted ${this.state}`)
     }
   
@@ -24,15 +24,24 @@ export default class FriendForm extends Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             Name:
-            <input type="text" value={this.state.name} onChange={this.handleChange} />
+            <input type="text" 
+              value={this.state.name} 
+              onChange={this.handleChange} 
+              name='name' />
           </label>
           <label>
             Age:
-            <input type="text" value={this.state.age} onChange={this.handleChange} />
+            <input type="text" 
+              value={this.state.age} 
+              onChange={this.handleChange} 
+              name='age' />
           </label>
           <label>
             Email:
-            <input type="text" value={this.state.email} onChange={this.handleChange} />
+            <input type="text" 
+              value={this.state.email} 
+              onChange={this.handleChange} 
+              name='email' />
           </label>
           <input type="submit" value="Submit" />
         </form>
