@@ -33,24 +33,33 @@ export default class FriendList extends Component {
             })
     }
 
+    deleteFriend = name => {
+        let match = this.state.friends.find(friend => friend.name === name);
+
+        axios
+            .delete(`http://localhost:5000/friends/${match.id}`)
+    }
+
     render() {
         return(
             <div>
                 <FriendForm friends={this.state.friends} />
                 {this.state.friends.map(friend => (
                     <FriendDetails key={friend.id} 
-                        friend={friend} />
+                        friend={friend}
+                        handleDelete={(name) => this.deleteFriend(name)} />
                 ))}
             </div>
         )
     }
 }
 
-function FriendDetails({ friend }) {
+function FriendDetails({ friend, handleDelete }) {
     const { name, age, email } = friend;
     return(
         <div>
             <h2>{name}</h2>
+            <button onClick={() => handleDelete(name)}>X</button>
             <div>
                 <strong>Age</strong>: {age}
             </div>
