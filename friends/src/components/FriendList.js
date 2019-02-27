@@ -8,14 +8,14 @@ import FriendForm from './FriendForm';
 const WrapperContainer = styled.div`
     display: flex;
     flex-direction: row;
+    border: 1px solid blue;
 `;
 
 const ListContainer = styled.div`
-    width: 100%;
+    width: 50%;
+    border: 1px solid green;
+    margin-left: auto;
 `;
-
-
-
 
 export default class FriendList extends Component {
     constructor(props) {

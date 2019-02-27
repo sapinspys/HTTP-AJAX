@@ -4,10 +4,10 @@ import { Button, Form, Label, Input } from 'reactstrap';
 import axios from 'axios';
 
 const formStyles = {
-  width: '100%',
+  width: '45%',
   display: 'flex',
   flexDirection: 'column',
-  margin: '0 auto'
+  position: 'fixed'
 }
 
 export default class FriendForm extends Component {
