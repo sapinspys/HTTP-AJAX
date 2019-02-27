@@ -85,7 +85,7 @@ function FriendDetails({ friend, handleDelete }) {
             <CardText>
                 <strong>Email</strong>: {email}
             </CardText>
-            <Button onClick={() => handleDelete(name)} size='sm' color='warning' justified>Delete Friend</Button>
+            <Button onClick={() => handleDelete(name)} size='sm' color='warning'>Delete Friend</Button>
         </Card>
     );
   };
