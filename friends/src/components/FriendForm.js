@@ -17,10 +17,17 @@ export default class FriendForm extends Component {
   
     handleSubmit = e => {
       e.preventDefault();
-      console.log(`You have submitted ${JSON.stringify(this.state)}`)
-
-      axios
-        .post('http://localhost:5000/friends', this.state)
+      
+      let match = this.props.friends.find(friend => friend.name === this.state.name);
+      if(match) {
+        // console.log(`Match found: http://localhost:5000/friends/${match.id}`)
+        axios
+          .put(`http://localhost:5000/friends/${match.id}`, this.state)
+      } else {
+        // console.log('No match found')
+        axios
+          .post('http://localhost:5000/friends', this.state)
+      }
 
       this.setState({
         name: '',

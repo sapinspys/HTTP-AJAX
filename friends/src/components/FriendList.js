@@ -36,9 +36,10 @@ export default class FriendList extends Component {
     render() {
         return(
             <div>
-                <FriendForm />
+                <FriendForm friends={this.state.friends} />
                 {this.state.friends.map(friend => (
-                    <FriendDetails key={friend.id} friend={friend} />
+                    <FriendDetails key={friend.id} 
+                        friend={friend} />
                 ))}
             </div>
         )
@@ -51,10 +52,10 @@ function FriendDetails({ friend }) {
         <div>
             <h2>{name}</h2>
             <div>
-                Age: {age}
+                <strong>Age</strong>: {age}
             </div>
             <div>
-                Email: <strong>{email}</strong>
+                <strong>Email</strong>: {email}
             </div>
         </div>
     );
