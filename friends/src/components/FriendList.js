@@ -37,7 +37,7 @@ function FriendDetails({ friend }) {
         <div>
             <h2>{name}</h2>
             <div>
-                Age: <em>{age}</em>
+                Age: {age}
             </div>
             <div>
                 Email: <strong>{email}</strong>
