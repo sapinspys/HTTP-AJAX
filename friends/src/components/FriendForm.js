@@ -19,7 +19,8 @@ export default class FriendForm extends Component {
       e.preventDefault();
       console.log(`You have submitted ${JSON.stringify(this.state)}`)
 
-      axios.post('http://localhost:5000/friends', this.state)
+      axios
+        .post('http://localhost:5000/friends', this.state)
 
       this.setState({
         name: '',

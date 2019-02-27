@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import FriendForm from './FriendForm';
+
 export default class FriendList extends Component {
     constructor(props) {
         super(props);
@@ -20,9 +22,21 @@ export default class FriendList extends Component {
             })
     }
 
+    componentDidUpdate() {
+        axios
+            .get('http://localhost:5000/friends')
+            .then(response => {
+                this.setState(() => ({ friends: response.data }))
+            })
+            .catch(error => {
+                console.error('Server Error', error)
+            })
+    }
+
     render() {
         return(
             <div>
+                <FriendForm />
                 {this.state.friends.map(friend => (
                     <FriendDetails key={friend.id} friend={friend} />
                 ))}
