@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class FriendForm extends Component {
     constructor(props) {
@@ -17,6 +18,9 @@ export default class FriendForm extends Component {
     handleSubmit = e => {
       e.preventDefault();
       console.log(`You have submitted ${JSON.stringify(this.state)}`)
+
+      axios.post('http://localhost:5000/friends', this.state)
+
       this.setState({
         name: '',
         age: '',
