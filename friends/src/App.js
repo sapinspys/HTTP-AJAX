@@ -96,7 +96,6 @@ class App extends Component {
               friends={this.state.friends}
               addFriend={(formState) => this.addFriend(formState)}
               friendToEdit={this.state.friendToEdit} />} />
-        <Route path='/edit' component={FriendForm} />
       </PageContainer>
     );
   }

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-
-import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 import { Button, Form, Label, Input } from 'reactstrap';
 
