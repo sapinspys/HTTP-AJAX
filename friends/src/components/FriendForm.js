@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -26,7 +26,8 @@ export default class FriendForm extends Component {
         this.state = {
             name: '',
             age: '',
-            email: ''
+            email: '',
+            redirect: false
         };
     }
   
@@ -36,10 +37,15 @@ export default class FriendForm extends Component {
 
     handleSubmit = (e) => {
       e.preventDefault();
-      this.props.addFriend(this.state.name);
+      this.props.addFriend(this.state);
+      this.setState({redirect:true});
     }
   
     render() {
+      if (this.state.redirect){
+        return <Redirect push to="/" />
+      }
+
       return (
         <Form onSubmit={this.handleSubmit} style={formStyles}>
           <Label style={{color:'gray', fontSize: '1.4rem'}}>Add or Edit Friends</Label>

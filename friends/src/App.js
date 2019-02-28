@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -15,8 +15,8 @@ const PageContainer = styled.div`
 `;
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
         friends: []
     }
@@ -57,22 +57,23 @@ class App extends Component {
           })
   }
 
-  addFriend = (name) => {
-    let match = this.state.friends.find(friend => friend.name === name);
+  addFriend = (formState) => {
+    delete formState.redirect;
+    let match = this.state.friends.find(friend => friend.name === formState.name);
     if(match) {
       console.log(`Match found: http://localhost:5000/friends/${match.id}`)
-      axios
-        .put(`http://localhost:5000/friends/${match.id}`, this.state)
-        .then(response => {
-          this.setState(() => ({ friends: response.data }))
-        })
-        .catch(error => {
-            console.error('Server Error', error)
-        })
+      // axios
+      //   .put(`http://localhost:5000/friends/${match.id}`, formState)
+      //   .then(response => {
+      //     this.setState(() => ({ friends: response.data }))
+      //   })
+      //   .catch(error => {
+      //       console.error('Server Error', error)
+      //   })
     } else {
       console.log('No match found')
       axios
-        .post('http://localhost:5000/friends', this.state)
+        .post('http://localhost:5000/friends', formState)
         .then(response => {
           this.setState(() => ({ friends: response.data }))
         })
@@ -101,7 +102,7 @@ class App extends Component {
           render={(props) => 
             <FriendForm {...props} 
               friends={this.state.friends}
-              addFriend={(name) => this.addFriend(name)} />} />
+              addFriend={(formState) => this.addFriend(formState)} />} />
         <Route path='/edit/:id' component={FriendForm} />
       </PageContainer>
     );
