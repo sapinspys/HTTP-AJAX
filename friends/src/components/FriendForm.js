@@ -38,6 +38,13 @@ export default class FriendForm extends Component {
     handleSubmit = (e) => {
       e.preventDefault();
       this.props.addFriend(this.state);
+      
+      this.setState({
+        name: '',
+        age: '',
+        email: ''
+      })
+
       this.setState({redirect:true});
     }
   

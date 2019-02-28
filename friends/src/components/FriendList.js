@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 import { Card, CardTitle, CardText, Button } from 'reactstrap';
@@ -28,14 +29,14 @@ export default class FriendList extends Component {
                     <FriendDetails key={friend.id} 
                         friend={friend}
                         handleDelete={(name) => this.props.handleDelete(name)}
-                        handleEdit={(friend) => this.props.handleEdit(friend)} />
+                        friendDetails={(friend) => this.props.sendFormData(friend)} />
                 ))}
             </WrapperContainer>
         )
     }
 }
 
-function FriendDetails({ friend, handleDelete, handleEdit }) {
+function FriendDetails({ friend, handleDelete, friendDetails }) {
     const { name, age, email } = friend;
     return(
         <Card inverse color='info' style={cardStyles}>
@@ -51,16 +52,19 @@ function FriendDetails({ friend, handleDelete, handleEdit }) {
             <CardText>
                 <strong>Email</strong>: {email}
             </CardText>
-            <Button onClick={() => handleEdit(friend)} 
-                size='sm' 
-                color='success'>
-                    Edit Friend
-            </Button>
-            <Button onClick={() => handleDelete(name)} 
-                size='sm' 
+            <Button onClick={() => handleDelete(name)}
+                size='sm'
                 color='warning'>
                     Delete Friend
             </Button>
+            <Link to='/edit' style={{textDecoration:'none'}}>
+                <Button onClick={() => friendDetails(friend)} 
+                    size='sm' 
+                    color='success'
+                    block>
+                        Edit Friend
+                </Button>
+            </Link>
         </Card>
     );
   };

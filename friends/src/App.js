@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -18,7 +18,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        friends: []
+        friends: [],
+        friendToEdit: null
     }
   }
 
@@ -57,7 +58,7 @@ class App extends Component {
           })
   }
 
-  addFriend = (formState) => {
+  addFriend = formState => {
     delete formState.redirect;
     let match = this.state.friends.find(friend => friend.name === formState.name);
     if(match) {
@@ -81,12 +82,10 @@ class App extends Component {
             console.error('Server Error', error)
         })
     }
+  }
 
-    this.setState({
-      name: '',
-      age: '',
-      email: ''
-    })
+  sendFormData = friend => {
+    this.setState({friendToEdit: friend})
   }
 
   render() {
@@ -97,7 +96,8 @@ class App extends Component {
           render={(props) => 
             <FriendList {...props} 
               friends={this.state.friends} 
-              handleDelete={(name) => this.deleteFriend(name)} />} />
+              handleDelete={(name) => this.deleteFriend(name)}
+              sendFormData={(name) => this.sendFormData(name)}  />} />
         <Route exact path='/add' 
           render={(props) => 
             <FriendForm {...props} 
