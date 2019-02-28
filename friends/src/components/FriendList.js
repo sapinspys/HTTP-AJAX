@@ -29,14 +29,14 @@ export default class FriendList extends Component {
                     <FriendDetails key={friend.id} 
                         friend={friend}
                         handleDelete={(name) => this.props.handleDelete(name)}
-                        friendDetails={(friend) => this.props.sendFormData(friend)} />
+                        sendFriendData={(friend) => this.props.sendFriendData(friend)} />
                 ))}
             </WrapperContainer>
         )
     }
 }
 
-function FriendDetails({ friend, handleDelete, friendDetails }) {
+function FriendDetails({ friend, handleDelete, sendFriendData }) {
     const { name, age, email } = friend;
     return(
         <Card inverse color='info' style={cardStyles}>
@@ -57,8 +57,8 @@ function FriendDetails({ friend, handleDelete, friendDetails }) {
                 color='warning'>
                     Delete Friend
             </Button>
-            <Link to='/edit' style={{textDecoration:'none'}}>
-                <Button onClick={() => friendDetails(friend)} 
+            <Link to='/add' style={{textDecoration:'none'}}>
+                <Button onClick={() => sendFriendData(friend)} 
                     size='sm' 
                     color='success'
                     block>

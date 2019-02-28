@@ -19,7 +19,7 @@ class App extends Component {
     super(props);
     this.state = {
         friends: [],
-        friendToEdit: null
+        friendToEdit: ''
     }
   }
 
@@ -84,7 +84,7 @@ class App extends Component {
     }
   }
 
-  sendFormData = friend => {
+  sendFriendData = friend => {
     this.setState({friendToEdit: friend})
   }
 
@@ -97,12 +97,13 @@ class App extends Component {
             <FriendList {...props} 
               friends={this.state.friends} 
               handleDelete={(name) => this.deleteFriend(name)}
-              sendFormData={(name) => this.sendFormData(name)}  />} />
+              sendFriendData={(name) => this.sendFriendData(name)}  />} />
         <Route exact path='/add' 
           render={(props) => 
             <FriendForm {...props} 
               friends={this.state.friends}
-              addFriend={(formState) => this.addFriend(formState)} />} />
+              addFriend={(formState) => this.addFriend(formState)}
+              friendToEdit={this.state.friendToEdit} />} />
         <Route path='/edit/:id' component={FriendForm} />
       </PageContainer>
     );

@@ -30,6 +30,16 @@ export default class FriendForm extends Component {
             redirect: false
         };
     }
+
+    componentDidMount() {
+      console.log(this.props.friendToEdit)
+      this.setState({
+        name: [this.props.friendToEdit.name],
+        age: [this.props.friendToEdit.age],
+        email: [this.props.friendToEdit.email],
+        redirect: false
+      });
+    }
   
     handleChange = e => {
       this.setState({[e.target.name]: e.target.value});
@@ -38,7 +48,7 @@ export default class FriendForm extends Component {
     handleSubmit = (e) => {
       e.preventDefault();
       this.props.addFriend(this.state);
-      
+
       this.setState({
         name: '',
         age: '',
