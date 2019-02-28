@@ -27,14 +27,15 @@ export default class FriendList extends Component {
                 {this.props.friends.map(friend => (
                     <FriendDetails key={friend.id} 
                         friend={friend}
-                        handleDelete={(name) => this.props.handleDelete(name)} />
+                        handleDelete={(name) => this.props.handleDelete(name)}
+                        handleEdit={(friend) => this.props.handleEdit(friend)} />
                 ))}
             </WrapperContainer>
         )
     }
 }
 
-function FriendDetails({ friend, handleDelete }) {
+function FriendDetails({ friend, handleDelete, handleEdit }) {
     const { name, age, email } = friend;
     return(
         <Card inverse color='info' style={cardStyles}>
@@ -50,6 +51,11 @@ function FriendDetails({ friend, handleDelete }) {
             <CardText>
                 <strong>Email</strong>: {email}
             </CardText>
+            <Button onClick={() => handleEdit(friend)} 
+                size='sm' 
+                color='success'>
+                    Edit Friend
+            </Button>
             <Button onClick={() => handleDelete(name)} 
                 size='sm' 
                 color='warning'>
