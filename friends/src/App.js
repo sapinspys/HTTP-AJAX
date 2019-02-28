@@ -9,6 +9,7 @@ import FriendForm from './components/FriendForm';
 
 // Styled Components
 const PageContainer = styled.div`
+  padding-bottom: 30px;
 `;
 
 class App extends Component {
