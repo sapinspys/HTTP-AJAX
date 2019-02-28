@@ -38,12 +38,14 @@ export default class Navigation extends Component {
                 <Link style={navLink} to='/add'>Add Friend</Link>
                 <a style={navLink} 
                     href='https://www.linkedin.com/in/guillermo-arria-devoe/' 
-                    target='_blank'>
+                    target='_blank'
+                    rel="noopener noreferrer">
                         <img src={linkedin} alt="linkedin" width='20' />
                 </a>
                 <a style={navLink} 
                     href='https://github.com/sapinspys' 
-                    target='_blank'>
+                    target='_blank'
+                    rel="noopener noreferrer">
                         <img src={github} alt="github" width='20' />
                 </a>
             </NavContainer>

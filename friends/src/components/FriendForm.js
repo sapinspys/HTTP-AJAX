@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, Label, Input } from 'reactstrap';
 
-import axios from 'axios';
-
 // Inline Styles
 const formStyles = {
   width: '400px',
