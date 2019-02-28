@@ -57,6 +57,37 @@ class App extends Component {
           })
   }
 
+  addFriend = (name) => {
+    let match = this.state.friends.find(friend => friend.name === name);
+    if(match) {
+      console.log(`Match found: http://localhost:5000/friends/${match.id}`)
+      axios
+        .put(`http://localhost:5000/friends/${match.id}`, this.state)
+        .then(response => {
+          this.setState(() => ({ friends: response.data }))
+        })
+        .catch(error => {
+            console.error('Server Error', error)
+        })
+    } else {
+      console.log('No match found')
+      axios
+        .post('http://localhost:5000/friends', this.state)
+        .then(response => {
+          this.setState(() => ({ friends: response.data }))
+        })
+        .catch(error => {
+            console.error('Server Error', error)
+        })
+    }
+
+    this.setState({
+      name: '',
+      age: '',
+      email: ''
+    })
+  }
+
   render() {
     return (
       <PageContainer>
@@ -66,7 +97,11 @@ class App extends Component {
             <FriendList {...props} 
               friends={this.state.friends} 
               handleDelete={(name) => this.deleteFriend(name)} />} />
-        <Route path='/add' component={FriendForm} />
+        <Route exact path='/add' 
+          render={(props) => 
+            <FriendForm {...props} 
+              friends={this.state.friends}
+              addFriend={(name) => this.addFriend(name)} />} />
         <Route path='/edit/:id' component={FriendForm} />
       </PageContainer>
     );

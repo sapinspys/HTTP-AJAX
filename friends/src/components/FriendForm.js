@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
+import axios from 'axios';
+
 import { Button, Form, Label, Input } from 'reactstrap';
 
 // Inline Styles
@@ -29,26 +33,10 @@ export default class FriendForm extends Component {
     handleChange = e => {
       this.setState({[e.target.name]: e.target.value});
     }
-  
-    handleSubmit = e => {
-      e.preventDefault();
-      
-      let match = this.props.friends.find(friend => friend.name === this.state.name);
-      if(match) {
-        console.log(`Match found: http://localhost:5000/friends/${match.id}`)
-        // axios
-        //   .put(`http://localhost:5000/friends/${match.id}`, this.state)
-      } else {
-        console.log('No match found')
-        // axios
-        //   .post('http://localhost:5000/friends', this.state)
-      }
 
-      this.setState({
-        name: '',
-        age: '',
-        email: ''
-      })
+    handleSubmit = (e) => {
+      e.preventDefault();
+      this.props.addFriend(this.state.name);
     }
   
     render() {
@@ -76,6 +64,9 @@ export default class FriendForm extends Component {
               onChange={this.handleChange} 
               name='email' />
           </Label>
+          {/* <Link>
+            <Button color='primary' block>Submit</Button>
+          </Link> */}
           <Button color='primary' block>Submit</Button>
         </Form>
       );
