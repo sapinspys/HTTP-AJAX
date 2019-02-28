@@ -55,7 +55,10 @@ class App extends Component {
       axios
         .put(`http://localhost:5000/friends/${match.id}`, formState)
         .then(response => {
-          this.setState(() => ({ friends: response.data }))
+          this.setState(() => ({ 
+            friends: response.data,
+            friendToEdit: ''
+          }))
         })
         .catch(error => {
             console.error('Server Error', error)
@@ -87,7 +90,7 @@ class App extends Component {
               friends={this.state.friends} 
               handleDelete={(name) => this.deleteFriend(name)}
               sendFriendData={(name) => this.sendFriendData(name)}  />} />
-        <Route exact path='/add' 
+        <Route path='/add' 
           render={(props) => 
             <FriendForm {...props} 
               friends={this.state.friends}
