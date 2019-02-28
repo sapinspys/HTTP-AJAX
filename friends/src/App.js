@@ -9,7 +9,6 @@ import FriendForm from './components/FriendForm';
 
 // Styled Components
 const PageContainer = styled.div`
-  padding: 50px;
   background: #E8E8E8;
 `;
 
