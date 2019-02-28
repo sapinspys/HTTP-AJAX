@@ -33,22 +33,28 @@ class App extends Component {
           })
   }
 
-  componentDidUpdate() {
-      axios
-          .get('http://localhost:5000/friends')
-          .then(response => {
-              this.setState(() => ({ friends: response.data }))
-          })
-          .catch(error => {
-              console.error('Server Error', error)
-          })
-  }
+  // componentDidUpdate() {
+  //     axios
+  //         .get('http://localhost:5000/friends')
+  //         .then(response => {
+  //             this.setState(() => ({ friends: response.data }))
+  //         })
+  //         .catch(error => {
+  //             console.error('Server Error', error)
+  //         })
+  // }
 
   deleteFriend = name => {
       let match = this.state.friends.find(friend => friend.name === name);
 
       axios
           .delete(`http://localhost:5000/friends/${match.id}`)
+          .then(response => {
+              this.setState(() => ({ friends: response.data }))
+          })
+          .catch(error => {
+              console.error('Server Error', error)
+          })
   }
 
   render() {
