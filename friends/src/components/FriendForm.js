@@ -34,9 +34,9 @@ export default class FriendForm extends Component {
     componentDidMount() {
       console.log(this.props.friendToEdit)
       this.setState({
-        name: [this.props.friendToEdit.name],
-        age: [this.props.friendToEdit.age],
-        email: [this.props.friendToEdit.email],
+        name: this.props.friendToEdit.name,
+        age: this.props.friendToEdit.age,
+        email: this.props.friendToEdit.email,
         redirect: false
       });
     }
