@@ -57,7 +57,9 @@ class App extends Component {
         <Navigation />
         <Route exact path='/' 
           render={(props) => 
-            <FriendList {...props} friends={this.state.friends} />} />
+            <FriendList {...props} 
+              friends={this.state.friends} 
+              handleDelete={(name) => this.deleteFriend(name)} />} />
         <Route path='/add' component={FriendForm} />
         <Route path='/edit/:id' component={FriendForm} />
       </PageContainer>

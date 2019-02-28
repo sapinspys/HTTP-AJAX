@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import axios from 'axios';
 import styled from 'styled-components';
 import { Card, CardTitle, CardText, Button } from 'reactstrap';
 
@@ -20,14 +21,21 @@ const cardStyles = {
 }
 
 export default class FriendList extends Component {
+    constructor(props) {
+        super(props);
+        // this.state = {
+        //     friends: []
+        // }
+    }
+
     render() {
         return(
             <WrapperContainer>
                 {/* <FriendForm friends={this.state.friends} /> */}
-                {this.state.friends.map(friend => (
+                {this.props.friends.map(friend => (
                     <FriendDetails key={friend.id} 
                         friend={friend}
-                        handleDelete={(name) => this.deleteFriend(name)} />
+                        handleDelete={(name) => this.props.handleDelete(name)} />
                 ))}
             </WrapperContainer>
         )
