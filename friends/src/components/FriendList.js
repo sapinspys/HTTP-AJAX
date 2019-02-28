@@ -14,7 +14,7 @@ const WrapperContainer = styled.div`
 
 // Inline Styles
 const cardStyles = {
-    width: '45%',
+    width: '30%',
     marginBottom: '20px', 
     padding: '15px'
 }
