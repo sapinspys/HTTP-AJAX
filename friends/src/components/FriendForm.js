@@ -37,13 +37,13 @@ export default class FriendForm extends Component {
       
       let match = this.props.friends.find(friend => friend.name === this.state.name);
       if(match) {
-        // console.log(`Match found: http://localhost:5000/friends/${match.id}`)
-        axios
-          .put(`http://localhost:5000/friends/${match.id}`, this.state)
+        console.log(`Match found: http://localhost:5000/friends/${match.id}`)
+        // axios
+        //   .put(`http://localhost:5000/friends/${match.id}`, this.state)
       } else {
-        // console.log('No match found')
-        axios
-          .post('http://localhost:5000/friends', this.state)
+        console.log('No match found')
+        // axios
+        //   .post('http://localhost:5000/friends', this.state)
       }
 
       this.setState({
