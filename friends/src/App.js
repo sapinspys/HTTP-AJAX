@@ -9,8 +9,6 @@ import FriendForm from './components/FriendForm';
 
 // Styled Components
 const PageContainer = styled.div`
-  background: #E8E8E8;
-  height: 100vh;
 `;
 
 class App extends Component {

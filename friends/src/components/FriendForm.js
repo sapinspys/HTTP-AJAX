@@ -3,18 +3,19 @@ import { Button, Form, Label, Input } from 'reactstrap';
 
 import axios from 'axios';
 
+// Inline Styles
 const formStyles = {
-  width: '40%',
+  width: '400px',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  position: 'fixed',
   margin: '0 auto',
   height: '400px',
   background: 'whitesmoke',
   padding: '20px',
   borderRadius: '5px',
-  boxShadow: '0 0 2px black'
+  boxShadow: '0 0 2px black',
+  marginTop: '50px'
 }
 
 export default class FriendForm extends Component {

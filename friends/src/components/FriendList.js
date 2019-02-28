@@ -9,12 +9,13 @@ const WrapperContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    margin-top: 20px;
+    margin-top: 50px;
 `;
 
 // Inline Styles
 const cardStyles = {
     width: '30%',
+    minWidth: '280px',
     marginBottom: '20px', 
     padding: '15px'
 }
@@ -73,7 +74,7 @@ export default class FriendList extends Component {
 function FriendDetails({ friend, handleDelete }) {
     const { name, age, email } = friend;
     return(
-        <Card inverse color='success' style={cardStyles}>
+        <Card inverse color='info' style={cardStyles}>
             <CardTitle style={{
                 fontSize:'1.4rem', 
                 borderBottom: '1px solid white'
