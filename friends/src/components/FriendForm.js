@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+
 import { Button, Form, Label, Input } from 'reactstrap';
 
-import axios from 'axios';
-
+// Inline Styles
 const formStyles = {
-  width: '40%',
+  width: '400px',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  position: 'fixed',
   margin: '0 auto',
   height: '400px',
   background: 'whitesmoke',
   padding: '20px',
   borderRadius: '5px',
-  boxShadow: '0 0 2px black'
+  boxShadow: '0 0 2px black',
+  marginTop: '50px'
 }
 
 export default class FriendForm extends Component {
@@ -23,36 +24,43 @@ export default class FriendForm extends Component {
         this.state = {
             name: '',
             age: '',
-            email: ''
+            email: '',
+            redirect: false
         };
+    }
+
+    componentDidMount() {
+      console.log(this.props.friendToEdit)
+      this.setState({
+        name: this.props.friendToEdit.name,
+        age: this.props.friendToEdit.age,
+        email: this.props.friendToEdit.email,
+        redirect: false
+      });
     }
   
     handleChange = e => {
       this.setState({[e.target.name]: e.target.value});
     }
-  
-    handleSubmit = e => {
+
+    handleSubmit = (e) => {
       e.preventDefault();
-      
-      let match = this.props.friends.find(friend => friend.name === this.state.name);
-      if(match) {
-        // console.log(`Match found: http://localhost:5000/friends/${match.id}`)
-        axios
-          .put(`http://localhost:5000/friends/${match.id}`, this.state)
-      } else {
-        // console.log('No match found')
-        axios
-          .post('http://localhost:5000/friends', this.state)
-      }
+      this.props.addFriend(this.state);
 
       this.setState({
         name: '',
         age: '',
         email: ''
       })
+
+      this.setState({redirect:true});
     }
   
     render() {
+      if (this.state.redirect){
+        return <Redirect push to="/" />
+      }
+
       return (
         <Form onSubmit={this.handleSubmit} style={formStyles}>
           <Label style={{color:'gray', fontSize: '1.4rem'}}>Add or Edit Friends</Label>
@@ -77,6 +85,9 @@ export default class FriendForm extends Component {
               onChange={this.handleChange} 
               name='email' />
           </Label>
+          {/* <Link>
+            <Button color='primary' block>Submit</Button>
+          </Link> */}
           <Button color='primary' block>Submit</Button>
         </Form>
       );
