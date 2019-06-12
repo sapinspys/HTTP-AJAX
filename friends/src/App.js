@@ -75,7 +75,6 @@ class App extends Component {
   };
 
   sendFriendData = friend => {
-    console.log(friend)
     this.setState({ friendToEdit: friend });
   };
 

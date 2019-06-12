@@ -36,7 +36,7 @@ export default class FriendForm extends Component {
           id: this.props.friendToEdit.id,
           redirect: false
         })
-      : console.log('No friend to edit');
+      : console.log("No friend selected to edit, add a new friend!");
   }
 
   handleChange = e => {

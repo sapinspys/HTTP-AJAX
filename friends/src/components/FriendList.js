@@ -21,6 +21,11 @@ const cardStyles = {
 };
 
 export default class FriendList extends Component {
+  componentDidMount() {
+    // Resets friendToEdit to "" in case user aborts edit friend
+      this.props.sendFriendData(""); 
+  }
+
   render() {
     return (
       <WrapperContainer>
