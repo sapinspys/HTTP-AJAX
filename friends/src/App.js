@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import React, { Component } from "react";
+import { Route } from "react-router-dom";
 
-import axios from 'axios';
+import axios from "axios";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import Navigation from './components/Navigation';
-import FriendList from './components/FriendList';
-import FriendForm from './components/FriendForm';
+import Navigation from "./components/Navigation";
+import FriendList from "./components/FriendList";
+import FriendForm from "./components/FriendForm";
 
 // Styled Components
 const PageContainer = styled.div`
@@ -16,81 +16,94 @@ const PageContainer = styled.div`
 
 class App extends Component {
   state = {
-      friends: [],
-      friendToEdit: ''
-  }
+    friends: [],
+    friendToEdit: ""
+  };
 
   componentDidMount() {
-      axios
-          .get('http://localhost:5000/friends')
-          .then(response => {
-              this.setState(() => ({ friends: response.data }))
-          })
-          .catch(error => {
-              console.error('Server Error', error)
-          })
+    axios
+      .get("http://localhost:5000/friends")
+      .then(response => {
+        this.setState(() => ({ friends: response.data }));
+      })
+      .catch(error => {
+        console.error("Server Error", error);
+      });
   }
 
   deleteFriend = id => {
-      axios
-          .delete(`http://localhost:5000/friends/${id}`)
-          .then(response => {
-              this.setState(() => ({ friends: response.data }))
-          })
-          .catch(error => {
-              console.error('Server Error', error)
-          })
-  }
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState(() => ({ friends: response.data }));
+      })
+      .catch(error => {
+        console.error("Server Error", error);
+      });
+  };
 
   addFriend = formState => {
     delete formState.redirect;
-    let match = this.state.friends.find(friend => friend.name === formState.name);
-    if(match) {
-      console.log(`Match found: http://localhost:5000/friends/${match.id}`)
+    let match = this.state.friends.find(
+      friend => friend.name === formState.name
+    );
+    if (match) {
+      console.log(`Match found: http://localhost:5000/friends/${match.id}`);
       axios
         .put(`http://localhost:5000/friends/${match.id}`, formState)
         .then(response => {
-          this.setState(() => ({ 
+          this.setState(() => ({
             friends: response.data,
-            friendToEdit: ''
-          }))
+            friendToEdit: ""
+          }));
         })
         .catch(error => {
-            console.error('Server Error', error)
-        })
+          console.error("Server Error", error);
+        });
     } else {
-      console.log(`No match found for ${formState.name}`)
+      console.log(`No match found for ${formState.name}`);
       axios
-        .post('http://localhost:5000/friends', formState)
+        .post("http://localhost:5000/friends", formState)
         .then(response => {
-          this.setState(() => ({ friends: response.data }))
+          this.setState(() => ({ friends: response.data }));
         })
         .catch(error => {
-            console.error('Server Error', error)
-        })
+          console.error("Server Error", error);
+        });
     }
-  }
+  };
 
   sendFriendData = friend => {
-    this.setState({friendToEdit: friend})
-  }
+    this.setState({ friendToEdit: friend });
+  };
 
   render() {
     return (
       <PageContainer>
         <Navigation />
-        <Route exact path='/' 
-          render={(props) => 
-            <FriendList {...props} 
-              friends={this.state.friends} 
-              deleteFriend={(name) => this.deleteFriend(name)}
-              sendFriendData={(name) => this.sendFriendData(name)}  />} />
-        <Route path='/add' 
-          render={(props) => 
-            <FriendForm {...props} 
+        <Route
+          exact
+          path="/"
+          render={props => (
+            <FriendList
+              {...props}
               friends={this.state.friends}
-              addFriend={(formState) => this.addFriend(formState)}
-              friendToEdit={this.state.friendToEdit} />} />
+              deleteFriend={id => this.deleteFriend(id)}
+              sendFriendData={friendObj => this.sendFriendData(friendObj)}
+            />
+          )}
+        />
+        <Route
+          path="/add"
+          render={props => (
+            <FriendForm
+              {...props}
+              friends={this.state.friends}
+              addFriend={formState => this.addFriend(formState)}
+              friendToEdit={this.state.friendToEdit}
+            />
+          )}
+        />
       </PageContainer>
     );
   }
