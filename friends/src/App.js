@@ -15,12 +15,9 @@ const PageContainer = styled.div`
 `;
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        friends: [],
-        friendToEdit: ''
-    }
+  state = {
+      friends: [],
+      friendToEdit: ''
   }
 
   componentDidMount() {
