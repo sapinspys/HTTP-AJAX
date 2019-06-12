@@ -45,8 +45,9 @@ class App extends Component {
   addFriend = formState => {
     delete formState.redirect;
     let match = this.state.friends.find(
-      friend => friend.name === formState.name
+      friend => friend.id === formState.id
     );
+    delete formState.id;
     if (match) {
       console.log(`Match found: http://localhost:5000/friends/${match.id}`);
       axios
@@ -74,6 +75,7 @@ class App extends Component {
   };
 
   sendFriendData = friend => {
+    console.log(friend)
     this.setState({ friendToEdit: friend });
   };
 

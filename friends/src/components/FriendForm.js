@@ -23,6 +23,7 @@ export default class FriendForm extends Component {
     name: "",
     age: "",
     email: "",
+    id: "",
     redirect: false
   };
 
@@ -32,13 +33,13 @@ export default class FriendForm extends Component {
           name: this.props.friendToEdit.name,
           age: this.props.friendToEdit.age,
           email: this.props.friendToEdit.email,
+          id: this.props.friendToEdit.id,
           redirect: false
         })
       : console.log('No friend to edit');
   }
 
   handleChange = e => {
-    console.log(e.target.name, e.target.value);
     this.setState({ [e.target.name]: e.target.value });
   };
 
@@ -50,6 +51,7 @@ export default class FriendForm extends Component {
       name: "",
       age: "",
       email: "",
+      id: "",
       redirect: true
     });
   };
