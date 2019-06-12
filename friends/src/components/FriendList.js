@@ -28,7 +28,7 @@ export default class FriendList extends Component {
                 {this.props.friends.map(friend => (
                     <FriendDetails key={friend.id} 
                         friend={friend}
-                        deleteFriend={(name) => this.props.deleteFriend(name)}
+                        deleteFriend={(id) => this.props.deleteFriend(id)}
                         sendFriendData={(friend) => this.props.sendFriendData(friend)} />
                 ))}
             </WrapperContainer>
@@ -37,7 +37,7 @@ export default class FriendList extends Component {
 }
 
 function FriendDetails({ friend, deleteFriend, sendFriendData }) {
-    const { name, age, email } = friend;
+    const { name, age, email, id } = friend;
     return(
         <Card inverse color='info' style={cardStyles}>
             <CardTitle style={{
@@ -52,7 +52,7 @@ function FriendDetails({ friend, deleteFriend, sendFriendData }) {
             <CardText>
                 <strong>Email</strong>: {email}
             </CardText>
-            <Button onClick={() => deleteFriend(name)}
+            <Button onClick={() => deleteFriend(id)}
                 size='sm'
                 color='warning'>
                     Delete Friend

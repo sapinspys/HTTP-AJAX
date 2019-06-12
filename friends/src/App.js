@@ -31,11 +31,9 @@ class App extends Component {
           })
   }
 
-  deleteFriend = name => {
-      let match = this.state.friends.find(friend => friend.name === name);
-
+  deleteFriend = id => {
       axios
-          .delete(`http://localhost:5000/friends/${match.id}`)
+          .delete(`http://localhost:5000/friends/${id}`)
           .then(response => {
               this.setState(() => ({ friends: response.data }))
           })
