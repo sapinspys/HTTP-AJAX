@@ -85,7 +85,7 @@ class App extends Component {
           render={(props) => 
             <FriendList {...props} 
               friends={this.state.friends} 
-              handleDelete={(name) => this.deleteFriend(name)}
+              deleteFriend={(name) => this.deleteFriend(name)}
               sendFriendData={(name) => this.sendFriendData(name)}  />} />
         <Route path='/add' 
           render={(props) => 
