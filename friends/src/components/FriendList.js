@@ -64,7 +64,7 @@ function FriendDetails({ friend, deleteFriend, sendFriendData }) {
       <Button onClick={() => deleteFriend(id)} size="sm" color="warning">
         Delete Friend
       </Button>
-      <Link to="/add" style={{ textDecoration: "none" }}>
+      <Link to="/add" style={{ textDecoration: "none", marginTop: "10px" }}>
         <Button
           onClick={() => sendFriendData(friend)}
           size="sm"
