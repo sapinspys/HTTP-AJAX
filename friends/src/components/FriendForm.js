@@ -20,23 +20,25 @@ const formStyles = {
 
 export default class FriendForm extends Component {
   state = {
-      name: "",
-      age: "",
-      email: "",
-      redirect: false
-  }
+    name: "",
+    age: "",
+    email: "",
+    redirect: false
+  };
 
   componentDidMount() {
-    console.log(this.props.friendToEdit);
-    this.setState({
-      name: this.props.friendToEdit.name,
-      age: this.props.friendToEdit.age,
-      email: this.props.friendToEdit.email,
-      redirect: false
-    });
+    this.props.friendToEdit
+      ? this.setState({
+          name: this.props.friendToEdit.name,
+          age: this.props.friendToEdit.age,
+          email: this.props.friendToEdit.email,
+          redirect: false
+        })
+      : console.log('No friend to edit');
   }
 
   handleChange = e => {
+    console.log(e.target.name, e.target.value);
     this.setState({ [e.target.name]: e.target.value });
   };
 
@@ -47,10 +49,9 @@ export default class FriendForm extends Component {
     this.setState({
       name: "",
       age: "",
-      email: ""
+      email: "",
+      redirect: true
     });
-
-    this.setState({ redirect: true });
   };
 
   render() {
