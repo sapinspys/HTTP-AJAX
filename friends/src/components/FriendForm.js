@@ -19,14 +19,11 @@ const formStyles = {
 };
 
 export default class FriendForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+  state = {
       name: "",
       age: "",
       email: "",
       redirect: false
-    };
   }
 
   componentDidMount() {

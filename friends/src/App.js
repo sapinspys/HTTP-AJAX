@@ -89,7 +89,7 @@ class App extends Component {
               {...props}
               friends={this.state.friends}
               deleteFriend={id => this.deleteFriend(id)}
-              sendFriendData={friendObj => this.sendFriendData(friendObj)}
+              sendFriendData={friend => this.sendFriendData(friend)}
             />
           )}
         />
